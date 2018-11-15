@@ -24,25 +24,49 @@ def solve(val):
     word = list(val)
 
     h = sz // 2
-    cor = False
+    corrected = False
     for i in range(h):
-        if word[sz - 1 - i] >= word[i]:
-            cor = True
+        if word[i] < word[sz - 1 - i]:
+            corrected = False
+        elif word[i] == word[sz - 1 - i]:
+            pass
+        else:
+            corrected = True
         word[sz - 1 - i] = word[i]
-    if not cor:
+    if corrected:
         return word
 
     if sz % 2 == 0:
-        c = ''
-        if word[h] < word[h - 1]:
-            c = word[h - 1]
+        c = word[h - 1]
+        if word[h - 1] > word[h]:
+            word[h] = c
         else :
-            c = str(int(word[h - 1]) + 1)
-        word[h - 1] = c
-        word[h] = c
+            i = 0
+            while c == '9':
+                word[h - 1 - i] = '0'
+                word[h + i] = '0'
+                i += 1
+                c = word[h - 1 - i]
+            word[h - 1 - i] = str(int(c) + 1)
+            word[h + i] = str(int(c) + 1)
     else:
-        c = str(int(word[h]) + 1)
-        word[h] = c
+        i = 0
+        changed = False
+        c = word[h]
+        if c == '9':
+            word[h] = '0'
+            c = word[h - 1]
+            changed = True
+        while c == '9':
+            word[h - 1 - i] = '0'
+            word[h + 1 + i] = '0'
+            i += 1
+            c = word[h - 1 - i]
+        if not changed:
+            word[h] = str(int(c) + 1)
+        else:
+            word[h - 1 - i] = str(int(c) + 1)
+            word[h + 1 + i] = str(int(c) + 1)
     return word
 
 def main():
