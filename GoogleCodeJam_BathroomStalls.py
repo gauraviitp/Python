@@ -1,5 +1,4 @@
 import sys
-import math
 
 sys.stdin = open('input.txt')
 sys.stdout = open('output.txt', 'w')
@@ -22,8 +21,8 @@ def solve(n, k):
         cn = d[n]
         if n == 0:
             return [0, 0]
-        x0 = math.floor((n - 1) / 2)
-        x1 = math.ceil((n - 1) / 2)
+        x0 = (n - 1) // 2
+        x1 = (n - 1) // 2 + ((n - 1) % 2 > 0)
         k -= cn
         if k <= 0:
             return [x1, x0]
