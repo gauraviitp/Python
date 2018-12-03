@@ -49,12 +49,16 @@ def main():
         if word == '':
             continue
         n, m = map(int, word.split())
+        if n <= 0 or m <= 0:
+            o.write('0\n')
+            tno += 1
+            continue
         li = []
         for i in range(n):
             row = []
             word = f.readline().rstrip()
             for c in word:
-                if c.isdigit():
+                if c == '0' or c == '1':
                     row.append(c)
             li.append(row)
         dp = solve(li)
