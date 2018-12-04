@@ -1,7 +1,7 @@
 import sys
 
-#sys.stdin = open('input.txt')
-#sys.stdout = open('output.txt', 'w')
+sys.stdin = open('input.txt')
+sys.stdout = open('output.txt', 'w')
 
 f = sys.stdin
 o = sys.stdout
@@ -9,6 +9,8 @@ o = sys.stdout
 def solve(li, m):
     n = len(li)
     msum, sum, st, en = 0, li[0], 0, 1
+    if sum <= m:
+        msum = max(sum, msum)
     while st < n:
         while True:
             if en <= n - 1 and sum <= m:
