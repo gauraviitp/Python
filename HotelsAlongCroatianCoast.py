@@ -1,7 +1,7 @@
 import sys
 
-sys.stdin = open('input.txt')
-sys.stdout = open('output.txt', 'w')
+#sys.stdin = open('input.txt')
+#sys.stdout = open('output.txt', 'w')
 
 f = sys.stdin
 o = sys.stdout
