@@ -30,4 +30,4 @@ def main():
         o.write(str(e) + ' ')
 
 if __name__ == "__main__":
-    main()SA
+    main()
