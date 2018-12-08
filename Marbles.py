@@ -6,28 +6,33 @@ sys.stdout = open('output.txt', 'w')
 f = sys.stdin
 o = sys.stdout
 
-def coef(n, k, dp):
-    if k > n:
-        return 0
-    elif n <= 0:
-        return 0
-    elif k == 1:
-        return n
-    elif k == 0:
-        return 1
-    elif k == n:
-        return 1
-    key = (n, k)
-    if key in dp:
-        return dp[key]
-    dp[key] = coef(n - 1, k - 1, dp) + coef(n - 1, k, dp)
-    dp[(n, n - k)] = dp[key]
-    return dp[key]
+def gcd(a, b):
+    return a if b == 0 else gcd(b, a % b)
 
 def solve(n, k):
-    dp = {}
-    return coef(n, k, dp)
+    if n < k:
+        return 0
+    elif k <= 0:
+        return 1
 
+    den = 1
+    k = min(k, n - k)
+    dp = [i for i in range(n - k + 1, n + 1)]
+
+    for i in range(2, k + 1):
+        den *= i
+
+    for j in range(k - 1, -1, -1):
+        cdiv = gcd(dp[j], den)
+        dp[j] //= cdiv
+        den //= cdiv
+        if den == 1:
+            break
+
+    prod = 1
+    for j in range(0, k):
+        prod *= dp[j]
+    return prod
 
 def main():
     t = int(f.readline())
