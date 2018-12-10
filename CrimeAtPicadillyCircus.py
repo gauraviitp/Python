@@ -42,7 +42,7 @@ def solve(li, p, k):
             while i + 1 < n and li[i + 1][0] == cur and 1 == li[i + 1][1]:
                 ct += 1
                 i += 1
-            total -= ctC
+            total -= ct
         if cur >= p:
             crimestarted = True
         i += 1
@@ -62,4 +62,4 @@ def main():
     o.write(str(res[0]) + ' ' + str(res[1]) + '\n')
 
 if __name__ == "__main__":
-    main()C
+    main()
